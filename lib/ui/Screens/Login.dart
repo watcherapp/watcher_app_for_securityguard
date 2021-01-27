@@ -5,7 +5,7 @@ import 'package:watcher_app_for_securityguard/ui/CustomWidgets/CircleDesign.dart
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyButton.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyTextFormField.dart';
 import 'package:watcher_app_for_securityguard/Common/fontStyles.dart';
-import 'SignUp.dart';
+import 'Registration/SignUp1.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -89,38 +89,38 @@ class _LoginState extends State<Login> {
                         )),
                     // Sign In Button
                     MyButton(title: "Sign In", onPressed: () {}),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 25.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  PageTransition(
-                                      child: SignUp(),
-                                      type: PageTransitionType.bottomToTop));
-                            },
-                            child: RichText(
-                                text: TextSpan(
-                                    text: "Don't have an account ? ",
+                    SizedBox(
+                      height: 35,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                    child: SignUp1(),
+                                    type: PageTransitionType.bottomToTop));
+                          },
+                          child: RichText(
+                              text: TextSpan(
+                                  text: "Don't have an account ? ",
+                                  style: TextStyle(
+                                      color: Colors.black54,
+                                      fontFamily: 'WorkSans',
+                                      fontSize: 16),
+                                  children: [
+                                TextSpan(
+                                    text: "Sign Up",
                                     style: TextStyle(
-                                        color: Colors.black54,
-                                        fontFamily: 'WorkSans',
-                                        fontSize: 16),
-                                    children: [
-                                  TextSpan(
-                                      text: "Sign Up",
-                                      style: TextStyle(
-                                          color: appPrimaryMaterialColor,
-                                          fontFamily: 'WorkSans Bold',
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 16))
-                                ])),
-                          ),
-                        ],
-                      ),
+                                        color: appPrimaryMaterialColor,
+                                        fontFamily: 'WorkSans Bold',
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 16))
+                              ])),
+                        ),
+                      ],
                     )
                   ],
                 ),

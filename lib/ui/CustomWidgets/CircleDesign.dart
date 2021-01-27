@@ -15,7 +15,7 @@ class CircleDesign extends StatelessWidget {
       child: Stack(fit: StackFit.expand, children: [
         if (backicon == true) ...[
           Positioned(
-              top: 40,
+              top: 50,
               left: 10,
               child: IconButton(
                   icon: Icon(
@@ -31,9 +31,8 @@ class CircleDesign extends StatelessWidget {
                   })),
         ],
         Positioned(
-            bottom: 40,
+            bottom: 20,
             left: 20,
-            top: 5,
             child: Text("${title ?? ""}", style: fontConstants.bigTitleWhite)),
         Positioned(
             right: 20,

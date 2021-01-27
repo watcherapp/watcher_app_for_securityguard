@@ -5,18 +5,20 @@ import 'package:watcher_app_for_securityguard/ui/CustomWidgets/CircleDesign.dart
 import 'package:watcher_app_for_securityguard/Common/fontStyles.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyButton.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyTextFormField.dart';
+import 'package:watcher_app_for_securityguard/ui/Screens/OTPScreen2.dart';
 
-import 'Login.dart';
+import '../Login.dart';
 
-class SignUp extends StatefulWidget {
+class SignUp1 extends StatefulWidget {
   @override
-  _SignUpState createState() => _SignUpState();
+  _SignUp1State createState() => _SignUp1State();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignUp1State extends State<SignUp1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       backgroundColor: appPrimaryMaterialColor,
       body: Column(
         children: [
@@ -44,7 +46,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 4.0),
+                      padding: const EdgeInsets.only(top: 5.0),
                       child: Text(
                         "We will send the OTP ( One Time Password )",
                         style: fontConstants.smallText,
@@ -74,39 +76,47 @@ class _SignUpState extends State<SignUp> {
                     SizedBox(
                       height: 20,
                     ),
-                    MyButton(title: "Send OTP", onPressed: () {}),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 25.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  PageTransition(
-                                      child: Login(),
-                                      type: PageTransitionType.bottomToTop));
-                            },
-                            child: RichText(
-                                text: TextSpan(
-                                    text: "Already have an account ? ",
+                    MyButton(
+                        title: "Send OTP",
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  child: OTPScreen(),
+                                  type: PageTransitionType.bottomToTop));
+                        }),
+                    SizedBox(
+                      height: 35,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                    child: Login(),
+                                    type: PageTransitionType.bottomToTop));
+                          },
+                          child: RichText(
+                              text: TextSpan(
+                                  text: "Already have an account ? ",
+                                  style: TextStyle(
+                                      color: Colors.black54,
+                                      fontFamily: 'WorkSans',
+                                      fontSize: 16),
+                                  children: [
+                                TextSpan(
+                                    text: "Sign in",
                                     style: TextStyle(
-                                        color: Colors.black54,
-                                        fontFamily: 'WorkSans',
-                                        fontSize: 16),
-                                    children: [
-                                  TextSpan(
-                                      text: "Sign in",
-                                      style: TextStyle(
-                                          color: appPrimaryMaterialColor,
-                                          fontFamily: 'WorkSans Bold',
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 16))
-                                ])),
-                          ),
-                        ],
-                      ),
+                                        color: appPrimaryMaterialColor,
+                                        fontFamily: 'WorkSans Bold',
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 16))
+                              ])),
+                        ),
+                      ],
                     )
                   ],
                 ),
