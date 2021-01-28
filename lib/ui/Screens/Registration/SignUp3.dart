@@ -1,3 +1,4 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -6,7 +7,9 @@ import 'package:watcher_app_for_securityguard/Common/fontStyles.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/CircleDesign.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyButton.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyTextFormField.dart';
+import 'package:watcher_app_for_securityguard/ui/Screens/HomeScreen.dart';
 
+import '../Login.dart';
 import 'SignUp1.dart';
 
 class SignUp3 extends StatefulWidget {
@@ -20,8 +23,11 @@ class _SignUp3State extends State<SignUp3> {
   Widget build(BuildContext context) {
     bool keyboardIsOpened = MediaQuery.of(context).viewInsets.bottom != 0.0;
     return Scaffold(
+        resizeToAvoidBottomPadding: false,
         backgroundColor: appPrimaryMaterialColor,
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleDesign(title: "Create account", backicon: true),
             Expanded(
@@ -144,15 +150,15 @@ class _SignUp3State extends State<SignUp3> {
                                 height: 35,
                               ),
                               Container(
-                                width: 135.0,
-                                height: 135.0,
+                                width: 130.0,
+                                height: 130.0,
                                 child: Icon(
                                   Icons.person,
                                   color: Colors.white,
                                   size: 110,
                                 ),
                                 decoration: new BoxDecoration(
-                                  color: Colors.grey[300],
+                                  color: Color(0x22888888),
                                   borderRadius: new BorderRadius.all(
                                       new Radius.circular(90.0)),
                                   border: new Border.all(
@@ -161,41 +167,14 @@ class _SignUp3State extends State<SignUp3> {
                                   ),
                                 ),
                               ),
-                              Container(
-                                height: 400,
-                                width: 300,
-                                color: Colors.black12,
-                                decoration: BoxDecoration(),
-                              ),
-                              MyTextFormField(
-                                  lable: "Password",
-                                  validator: (val) {
-                                    if (val.isEmpty) {
-                                      return "Please Enter Password";
-                                    }
-                                    return "";
-                                  },
-                                  hintText: "Enter Password"),
-                              MyTextFormField(
-                                  lable: "Confirm Password",
-                                  validator: (val) {
-                                    if (val.isEmpty) {
-                                      return "Pasword does not match";
-                                    }
-                                    return "";
-                                  },
-                                  hintText: "Re-enter Password"),
-                              /* MyButton(
-                                onPressed: () {
-                                  */ /* Navigator.push(
-                                      context,
-                                      PageTransition(
-                                          child: ChooseCreateOrJoin(),
-                                          type:
-                                              PageTransitionType.rightToLeft));*/ /*
-                                },
-                                title: "Next",
-                              )*/
+                              SizedBox(height: 24),
+                              Text("Click or Select Profile Photo",
+                                  style: fontConstants.smallText),
+                              SizedBox(height: 40),
+                              containerdash,
+                              SizedBox(height: 24),
+                              Text("Select Identity Proof",
+                                  style: fontConstants.smallText),
                             ],
                           ),
                         ))
@@ -206,7 +185,7 @@ class _SignUp3State extends State<SignUp3> {
                           child: Column(
                             children: [
                               MyTextFormField(
-                                  lable: "Password",
+                                  lable: "Create Password",
                                   validator: (val) {
                                     if (val.isEmpty) {
                                       return "Please Enter Password";
@@ -223,17 +202,20 @@ class _SignUp3State extends State<SignUp3> {
                                     return "";
                                   },
                                   hintText: "Re-enter Password"),
-                              /*MyButton(
+                              SizedBox(
+                                height: 30,
+                              ),
+                              MyButton(
                                 onPressed: () {
-                                  */ /* Navigator.push(
+                                  Navigator.push(
                                       context,
                                       PageTransition(
-                                          child: ChooseCreateOrJoin(),
+                                          child: HomeScreen(),
                                           type:
-                                              PageTransitionType.rightToLeft));*/ /*
+                                              PageTransitionType.rightToLeft));
                                 },
                                 title: "Sign Up",
-                              )*/
+                              )
                             ],
                           ),
                         ))
@@ -325,7 +307,7 @@ class _SignUp3State extends State<SignUp3> {
                                     child: Icon(Icons.arrow_back_ios_rounded)),
                               ),
                             ),
-                            Padding(
+                            /*Padding(
                               padding: EdgeInsets.only(left: 31),
                               child: Align(
                                 alignment: Alignment.bottomRight,
@@ -341,11 +323,46 @@ class _SignUp3State extends State<SignUp3> {
                                     child:
                                         Icon(Icons.arrow_forward_ios_rounded)),
                               ),
-                            ),
+                            ),*/
                           ],
                         )
                       : SizedBox(),
                 ],
               ));
+  }
+
+  Widget get containerdash {
+    return Center(
+      child: DottedBorder(
+        borderType: BorderType.Rect,
+        dashPattern: [5, 5, 5, 5],
+        color: Colors.grey[400],
+        child: Container(
+          height: 129,
+          width: 220,
+          decoration: ShapeDecoration(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+            color: Color(0x22888888),
+          ),
+          child: Center(
+            child: Container(
+              width: 80.0,
+              height: 80.0,
+              child: Icon(
+                Icons.person,
+                color: Colors.white,
+                size: 70,
+              ),
+              decoration: new BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: new BorderRadius.all(new Radius.circular(90.0)),
+                border: new Border.all(color: Colors.grey[300], width: 0.5),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

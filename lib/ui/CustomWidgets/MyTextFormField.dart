@@ -32,28 +32,31 @@ class MyTextFormField extends StatelessWidget {
             padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
             child: Text(lable ?? "", style: fontConstants.formFieldLabel),
           ),
-          TextFormField(
-            controller: controller,
-            keyboardType: keyboardType,
-            style: TextStyle(fontSize: 13),
-            maxLength: maxLength,
-            validator: validator,
-            obscureText: isPassword,
-            decoration: InputDecoration(
-              fillColor: Colors.grey[200],
-              filled: true,
-              hintText: "${hintText ?? ""}",
-              hintStyle: TextStyle(fontSize: 13, color: Colors.grey),
-              floatingLabelBehavior: FloatingLabelBehavior.never,
-              contentPadding:
-                  EdgeInsets.only(left: 15, right: 8, top: 4, bottom: 4),
-              counterText: "",
-              suffix: hideShowText,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(
-                  width: 0,
-                  style: BorderStyle.none,
+          Padding(
+            padding: const EdgeInsets.only(top: 2.0),
+            child: TextFormField(
+              controller: controller,
+              keyboardType: keyboardType,
+              style: TextStyle(fontSize: 13),
+              maxLength: maxLength,
+              validator: validator,
+              obscureText: isPassword,
+              decoration: InputDecoration(
+                fillColor: Colors.grey[200],
+                filled: true,
+                hintText: "${hintText ?? ""}",
+                hintStyle: TextStyle(fontSize: 13, color: Colors.grey),
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+                contentPadding:
+                    EdgeInsets.only(left: 15, right: 8, top: 4, bottom: 4),
+                counterText: "",
+                suffix: hideShowText,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(
+                    width: 0,
+                    style: BorderStyle.none,
+                  ),
                 ),
               ),
             ),
