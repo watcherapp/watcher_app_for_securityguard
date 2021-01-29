@@ -37,19 +37,32 @@ class _HomeScreenState extends State<HomeScreen>
         appBar: AppBar(
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
-          elevation: 0,
+          elevation: 0.5,
+          centerTitle: true,
+          title: Text(
+            "Hey, Megha",
+            style: TextStyle(color: Colors.black, fontSize: 15),
+          ),
+          actions: [
+            IconButton(
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ),
+                onPressed: () {})
+          ],
         ),
         body: Column(
           children: [
-            SizedBox(
+            /* SizedBox(
               height: 40,
-            ),
+            ),*/
             TabBar(
                 isScrollable: true,
                 controller: _tabController,
                 unselectedLabelColor: Colors.grey,
                 labelColor: appPrimaryMaterialColor[900],
-                indicatorColor: appPrimaryMaterialColor,
+                indicatorColor: appPrimaryMaterialColor[700],
                 indicatorWeight: 2,
                 onTap: (index) {},
                 tabs: tabs),

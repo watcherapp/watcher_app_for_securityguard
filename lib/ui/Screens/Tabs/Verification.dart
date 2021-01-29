@@ -22,6 +22,8 @@ class _VerificationState extends State<Verification>
   int _secondDigit;
   int _thirdDigit;
   int _fourthDigit;
+  int _fifthDigit;
+  int _sixDigit;
 
   final List<String> _visitorType = ["Visitor", "Staff"];
 
@@ -34,12 +36,14 @@ class _VerificationState extends State<Verification>
 
   get _getInputField {
     return new Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         _otpTextField(_firstDigit),
         _otpTextField(_secondDigit),
         _otpTextField(_thirdDigit),
         _otpTextField(_fourthDigit),
+        _otpTextField(_fifthDigit),
+        _otpTextField(_sixDigit),
       ],
     );
   }
@@ -134,7 +138,11 @@ class _VerificationState extends State<Verification>
                       ),
                       onPressed: () {
                         setState(() {
-                          if (_fourthDigit != null) {
+                          if (_sixDigit != null) {
+                            _sixDigit = null;
+                          } else if (_fifthDigit != null) {
+                            _fifthDigit = null;
+                          } else if (_fourthDigit != null) {
                             _fourthDigit = null;
                           } else if (_thirdDigit != null) {
                             _thirdDigit = null;
@@ -163,7 +171,7 @@ class _VerificationState extends State<Verification>
           child: new Column(
             children: <Widget>[
               SizedBox(
-                height: 50,
+                height: 40,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -226,60 +234,11 @@ class _VerificationState extends State<Verification>
                   ),
                 ],
               ),
-              /* Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/VisitorHistoryList');
-                          },
-                          child: Row(
-                            children: <Widget>[
-                              SizedBox(width: 10),
-                              Icon(Icons.search),
-                              SizedBox(width: 5),
-                              Expanded(child: Text("Search Visitor"))
-                            ],
-                          ),
-                        ),
-                        height: 45,
-                        decoration: BoxDecoration(
-                            color: Colors.grey[100],
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(6.0))),
-                      ),
-                    ),
-                  ),
-                   GestureDetector(
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          child: Center(
-                            child: Icon(Icons.exit_to_app, color: Colors.red),
-                          ),
-                          decoration: BoxDecoration(
-                              color: Colors.red[100],
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(80.0))),
-                          height: 45,
-                          width: 45,
-                        ),
-                        Text("Logout",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 10))
-                      ],
-                    ),
-                    onTap: () {},
-                  ),
-                ],
-              ),*/
-              Padding(padding: EdgeInsets.only(top: 25)),
+              SizedBox(
+                height: 55,
+              ),
               _getInputField,
-              SizedBox(height: 60),
+              SizedBox(height: 55),
               _getOtpKeyboard,
               Padding(padding: EdgeInsets.only(top: 40)),
               SizedBox(
@@ -305,24 +264,24 @@ class _VerificationState extends State<Verification>
 
   // Returns "Otp custom text field"
   Widget _otpTextField(int digit) {
-    return new Container(
-      width: 45.0,
-      height: 45.0,
-      alignment: Alignment.center,
-      child: new Text(
-        digit != null ? digit.toString() : "",
-        style: new TextStyle(
-          fontSize: 30.0,
-          color: Colors.black,
+    return Padding(
+      padding: const EdgeInsets.only(right: 9.0),
+      child: new Container(
+        width: 40.0,
+        height: 40.0,
+        alignment: Alignment.center,
+        child: new Text(
+          digit != null ? digit.toString() : "",
+          style: new TextStyle(
+            fontSize: 25.0,
+            color: Colors.black,
+          ),
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(width: 2, color: appPrimaryMaterialColor[800]),
         ),
       ),
-      decoration: BoxDecoration(
-//            color: Colors.grey.withOpacity(0.4),
-          border: Border(
-              bottom: BorderSide(
-        width: 2.0,
-        color: Colors.black,
-      ))),
     );
   }
 
@@ -331,7 +290,7 @@ class _VerificationState extends State<Verification>
     return Padding(
       padding: const EdgeInsets.all(3.0),
       child: new Material(
-        color: Colors.grey[100],
+        color: Colors.grey[200],
         child: new InkWell(
           onTap: onPressed,
           borderRadius: new BorderRadius.circular(40.0),
@@ -386,11 +345,17 @@ class _VerificationState extends State<Verification>
         _thirdDigit = _currentDigit;
       } else if (_fourthDigit == null) {
         _fourthDigit = _currentDigit;
+      } else if (_fifthDigit == null) {
+        _fifthDigit = _currentDigit;
+      } else if (_sixDigit == null) {
+        _sixDigit = _currentDigit;
       }
     });
   }
 
   void clearOtp() {
+    _sixDigit = null;
+    _fifthDigit = null;
     _fourthDigit = null;
     _thirdDigit = null;
     _secondDigit = null;
