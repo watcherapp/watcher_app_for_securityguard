@@ -9,9 +9,6 @@ import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyButton.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyTextFormField.dart';
 import 'package:watcher_app_for_securityguard/ui/Screens/HomeScreen.dart';
 
-import '../Login.dart';
-import 'SignUp1.dart';
-
 class SignUp3 extends StatefulWidget {
   @override
   _SignUp3State createState() => _SignUp3State();
@@ -96,6 +93,9 @@ class _SignUp3State extends State<SignUp3> {
                             physics: BouncingScrollPhysics(),
                             child: Column(
                               children: [
+                                SizedBox(
+                                  height: 15,
+                                ),
                                 MyTextFormField(
                                     lable: "First Name",
                                     validator: (val) {
@@ -184,6 +184,9 @@ class _SignUp3State extends State<SignUp3> {
                           physics: BouncingScrollPhysics(),
                           child: Column(
                             children: [
+                              SizedBox(
+                                height: 15,
+                              ),
                               MyTextFormField(
                                   lable: "Create Password",
                                   validator: (val) {

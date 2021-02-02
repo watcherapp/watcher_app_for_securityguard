@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:watcher_app_for_securityguard/Common/appColors.dart';
-import 'package:watcher_app_for_securityguard/ui/CustomWidgets/CircleDesign.dart';
 import 'package:watcher_app_for_securityguard/Common/fontStyles.dart';
+import 'package:watcher_app_for_securityguard/ui/CustomWidgets/CircleDesign.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyButton.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyTextFormField.dart';
 import 'package:watcher_app_for_securityguard/ui/Screens/OTPScreen2.dart';
@@ -62,7 +62,7 @@ class _SignUp1State extends State<SignUp1> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
                     MyTextFormField(
                         lable: "Mobile No",
@@ -83,7 +83,7 @@ class _SignUp1State extends State<SignUp1> {
                               context,
                               PageTransition(
                                   child: OTPScreen(),
-                                  type: PageTransitionType.bottomToTop));
+                                  type: PageTransitionType.rightToLeft));
                         }),
                     SizedBox(
                       height: 35,

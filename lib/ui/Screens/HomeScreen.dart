@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen>
           centerTitle: true,
           title: Text(
             "Hey, Megha",
-            style: TextStyle(color: Colors.black, fontSize: 15),
+            style: TextStyle(color: Colors.black, fontSize: 17),
           ),
           actions: [
             IconButton(

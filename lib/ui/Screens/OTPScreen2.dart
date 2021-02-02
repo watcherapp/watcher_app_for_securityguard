@@ -5,10 +5,7 @@ import 'package:watcher_app_for_securityguard/Common/appColors.dart';
 import 'package:watcher_app_for_securityguard/Common/fontStyles.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/CircleDesign.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyButton.dart';
-import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyTextFormField.dart';
 import 'package:watcher_app_for_securityguard/ui/Screens/Registration/SignUp3.dart';
-
-import 'Login.dart';
 
 class OTPScreen extends StatefulWidget {
   @override
@@ -92,7 +89,7 @@ class _OTPScreenState extends State<OTPScreen> {
                               context,
                               PageTransition(
                                   child: SignUp3(),
-                                  type: PageTransitionType.bottomToTop));
+                                  type: PageTransitionType.rightToLeft));
                         }),
                     SizedBox(
                       height: 35,

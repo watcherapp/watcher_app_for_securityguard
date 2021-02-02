@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:watcher_app_for_securityguard/Common/appColors.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyButton.dart';
+import 'package:watcher_app_for_securityguard/ui/Screens/AddVisitorScreen.dart';
 
 class Verification extends StatefulWidget {
   @override
@@ -176,33 +178,43 @@ class _VerificationState extends State<Verification>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Column(
-                    children: [
-                      Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                            color: appPrimaryMaterialColor,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            border: Border.all(width: 0.5, color: Colors.black),
-                          ),
-                          child: Icon(
-                            Icons.person_add_alt_1_outlined,
-                            size: 30,
-                            color: Colors.white,
-                          )),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 11.0),
-                        child: Text(
-                          "Add Visitor",
-                          style: TextStyle(
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              child: AddVisitorScreen(),
+                              type: PageTransitionType.rightToLeft));
+                    },
+                    child: Column(
+                      children: [
+                        Container(
+                            height: 60,
+                            width: 60,
+                            decoration: BoxDecoration(
                               color: appPrimaryMaterialColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 13),
-                        ),
-                      )
-                    ],
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.0)),
+                              border:
+                                  Border.all(width: 0.5, color: Colors.black),
+                            ),
+                            child: Icon(
+                              Icons.person_add_alt_1_outlined,
+                              size: 30,
+                              color: Colors.white,
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 11.0),
+                          child: Text(
+                            "Add Visitor",
+                            style: TextStyle(
+                                color: appPrimaryMaterialColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                   Column(
                     children: [

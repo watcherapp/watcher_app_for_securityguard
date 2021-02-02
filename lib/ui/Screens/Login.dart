@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:watcher_app_for_securityguard/Common/appColors.dart';
+import 'package:watcher_app_for_securityguard/Common/fontStyles.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/CircleDesign.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyButton.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyTextFormField.dart';
-import 'package:watcher_app_for_securityguard/Common/fontStyles.dart';
+
 import 'Registration/SignUp1.dart';
 
 class Login extends StatefulWidget {
@@ -43,7 +44,7 @@ class _LoginState extends State<Login> {
                     Text("Sign In to Continue",
                         style: fontConstants.subTitleText),
                     SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
 
                     // Email or Mobile Number
