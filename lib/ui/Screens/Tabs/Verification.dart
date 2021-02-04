@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,16 @@ class _VerificationState extends State<Verification>
   int _fourthDigit;
   int _fifthDigit;
   int _sixDigit;
+  String barCode = "";
+
+  Future scanVisitor() async {
+    try {
+      String barCode = await BarcodeScanner.scan();
+      // var qrtext = barCode.toString().split(",");
+    } catch (e) {
+      setState(() => this.barCode = 'Unknown error: $e');
+    }
+  }
 
   final List<String> _visitorType = ["Visitor", "Staff"];
 
@@ -216,33 +227,39 @@ class _VerificationState extends State<Verification>
                       ],
                     ),
                   ),
-                  Column(
-                    children: [
-                      Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                            color: appPrimaryMaterialColor,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            border: Border.all(width: 0.5, color: Colors.black),
-                          ),
-                          child: Icon(
-                            Icons.qr_code,
-                            size: 30,
-                            color: Colors.white,
-                          )),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 11.0),
-                        child: Text(
-                          "Scan QR",
-                          style: TextStyle(
+                  GestureDetector(
+                    onTap: () {
+                      scanVisitor();
+                    },
+                    child: Column(
+                      children: [
+                        Container(
+                            height: 60,
+                            width: 60,
+                            decoration: BoxDecoration(
                               color: appPrimaryMaterialColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 13),
-                        ),
-                      )
-                    ],
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.0)),
+                              border:
+                                  Border.all(width: 0.5, color: Colors.black),
+                            ),
+                            child: Icon(
+                              Icons.qr_code,
+                              size: 30,
+                              color: Colors.white,
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 11.0),
+                          child: Text(
+                            "Scan QR",
+                            style: TextStyle(
+                                color: appPrimaryMaterialColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ],
               ),
