@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:watcher_app_for_securityguard/Common/appColors.dart';
 
+import '../../CustomWidgets/MyButton.dart';
+import '../../CustomWidgets/MyTextFormField.dart';
+
 class VisitorList extends StatefulWidget {
   @override
   _VisitorListState createState() => _VisitorListState();
@@ -22,6 +25,17 @@ class _VisitorListState extends State<VisitorList> {
     Tab(
       text: 'OUT',
     ),
+  ];
+  List dialogList = [
+    {
+      "lable": "Physically Misbehavior",
+    },
+    {
+      "lable": "Verbal Misbehavior",
+    },
+    {
+      "lable": "Threten on me",
+    },
   ];
 
   @override
@@ -139,21 +153,32 @@ class _VisitorListState extends State<VisitorList> {
                                             new Radius.circular(90.0)),
                                       ),
                                     ),
-                                    Column(
-                                      children: [
-                                        Icon(
-                                          Icons.report,
-                                          size: 33,
-                                          color: Colors.black45,
-                                        ),
-                                        Text("Report",
+                                    GestureDetector(
+                                      onTap: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                ShowDialog()
+                                        );
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Icon(
+                                            Icons.report,
+                                            size: 33,
+                                            color: Colors.black45,
+                                          ),
+                                          Text(
+                                            "Report",
                                             style: TextStyle(
                                               color: Colors.black54,
                                               fontFamily: 'WorkSans Bold',
                                               fontWeight: FontWeight.w400,
                                               fontSize: 12,
-                                            ))
-                                      ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     )
                                   ],
                                 ),
@@ -240,21 +265,30 @@ class _VisitorListState extends State<VisitorList> {
                                             new Radius.circular(90.0)),
                                       ),
                                     ),
-                                    Column(
-                                      children: [
-                                        Icon(
-                                          Icons.report,
-                                          size: 33,
-                                          color: Colors.black45,
-                                        ),
-                                        Text("Report",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontFamily: 'WorkSans Bold',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12,
-                                            ))
-                                      ],
+                                    GestureDetector(
+                                      onTap: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                ShowDialog()
+                                        );
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Icon(
+                                            Icons.report,
+                                            size: 33,
+                                            color: Colors.black45,
+                                          ),
+                                          Text("Report",
+                                              style: TextStyle(
+                                                color: Colors.black54,
+                                                fontFamily: 'WorkSans Bold',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12,
+                                              ))
+                                        ],
+                                      ),
                                     )
                                   ],
                                 ),
@@ -341,21 +375,30 @@ class _VisitorListState extends State<VisitorList> {
                                             new Radius.circular(90.0)),
                                       ),
                                     ),
-                                    Column(
-                                      children: [
-                                        Icon(
-                                          Icons.report,
-                                          size: 33,
-                                          color: Colors.black45,
-                                        ),
-                                        Text("Report",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontFamily: 'WorkSans Bold',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12,
-                                            ))
-                                      ],
+                                    GestureDetector(
+                                      onTap: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                ShowDialog()
+                                        );
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Icon(
+                                            Icons.report,
+                                            size: 33,
+                                            color: Colors.black45,
+                                          ),
+                                          Text("Report",
+                                              style: TextStyle(
+                                                color: Colors.black54,
+                                                fontFamily: 'WorkSans Bold',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12,
+                                              ))
+                                        ],
+                                      ),
                                     )
                                   ],
                                 ),
@@ -442,21 +485,30 @@ class _VisitorListState extends State<VisitorList> {
                                             new Radius.circular(90.0)),
                                       ),
                                     ),
-                                    Column(
-                                      children: [
-                                        Icon(
-                                          Icons.report,
-                                          size: 33,
-                                          color: Colors.black45,
-                                        ),
-                                        Text("Report",
-                                            style: TextStyle(
-                                              color: Colors.black54,
-                                              fontFamily: 'WorkSans Bold',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12,
-                                            ))
-                                      ],
+                                    GestureDetector(
+                                      onTap: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              ShowDialog()
+                                        );
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Icon(
+                                            Icons.report,
+                                            size: 33,
+                                            color: Colors.black45,
+                                          ),
+                                          Text("Report",
+                                              style: TextStyle(
+                                                color: Colors.black54,
+                                                fontFamily: 'WorkSans Bold',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12,
+                                              ))
+                                        ],
+                                      ),
                                     )
                                   ],
                                 ),
@@ -503,3 +555,105 @@ class _VisitorListState extends State<VisitorList> {
   ),
   )*/
 }
+
+class ShowDialog extends StatefulWidget {
+  @override
+  _ShowDialogState createState() => _ShowDialogState();
+}
+
+class _ShowDialogState extends State<ShowDialog> {
+  List dialogList = [
+    {
+      "lable": "Physically Misbehavior",
+    },
+    {
+      "lable": "Verbal Misbehavior",
+    },
+    {
+      "lable": "Threten on me",
+    },
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10.0),
+          ),
+        ),
+        title: Text(
+            '       Select Report Type'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Column(
+              children:
+              dialogList.map((data) {
+                return Column(
+                  children: [
+                    Column(
+                      mainAxisAlignment:
+                      MainAxisAlignment
+                          .center,
+                      crossAxisAlignment:
+                      CrossAxisAlignment
+                          .start,
+                      children: [
+                        Divider(
+                          color:
+                          Colors.grey,
+                          height: 1,
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          data["lable"],
+                          style: TextStyle(
+                            color:
+                            appPrimaryMaterialColor,
+                            fontSize: 16,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
+                  ],
+                );
+                print(data["lable"]);
+              }).toList(),
+            ),
+            Column(
+              children: [
+                MyTextFormField(
+                  lable: "Other",
+                  validator: (val) {
+                    if (val.isEmpty) {
+                      return "Please Enter type Report Reason";
+                    }
+                    return "";
+                  },
+                  hintText:
+                  "Please type Report Reason",
+                ),
+                Padding(
+                  padding:
+                  const EdgeInsets.only(
+                      right: 50,
+                      left: 50),
+                  child: MyButton(
+                      title: "Report",
+                      onPressed: () {}),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+

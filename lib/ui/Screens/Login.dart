@@ -50,14 +50,15 @@ class _LoginState extends State<Login> {
                     // Email or Mobile Number
 
                     MyTextFormField(
-                        lable: "Mobile No or email",
-                        validator: (val) {
-                          if (val.isEmpty) {
-                            return "Please Enter Mobile or email";
-                          }
-                          return "";
-                        },
-                        hintText: "Enter mobile or email"),
+                      lable: "Mobile No or email",
+                      validator: (val) {
+                        if (val.isEmpty) {
+                          return "Please Enter Mobile or email";
+                        }
+                        return "";
+                      },
+                      hintText: "Enter mobile or email",
+                    ),
 
                     //Passwprd FormField
 
@@ -105,21 +106,24 @@ class _LoginState extends State<Login> {
                                     type: PageTransitionType.bottomToTop));
                           },
                           child: RichText(
-                              text: TextSpan(
-                                  text: "Don't have an account ? ",
-                                  style: TextStyle(
-                                      color: Colors.black54,
-                                      fontFamily: 'WorkSans',
-                                      fontSize: 16),
-                                  children: [
+                            text: TextSpan(
+                              text: "Don't have an account ? ",
+                              style: TextStyle(
+                                  color: Colors.black54,
+                                  fontFamily: 'WorkSans',
+                                  fontSize: 16),
+                              children: [
                                 TextSpan(
-                                    text: "Sign Up",
-                                    style: TextStyle(
-                                        color: appPrimaryMaterialColor,
-                                        fontFamily: 'WorkSans Bold',
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 16))
-                              ])),
+                                  text: "Sign Up",
+                                  style: TextStyle(
+                                      color: appPrimaryMaterialColor,
+                                      fontFamily: 'WorkSans Bold',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 16),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     )
