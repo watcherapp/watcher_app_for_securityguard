@@ -5,6 +5,7 @@ import 'package:watcher_app_for_securityguard/Common/fontStyles.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/CircleDesign.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyButton.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyTextFormField.dart';
+import 'package:watcher_app_for_securityguard/ui/Screens/Forgotpassword/VerifyScreen.dart';
 
 import 'Registration/SignUp1.dart';
 
@@ -79,7 +80,13 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  child: VerifyScreen(),
+                                  type: PageTransitionType.bottomToTop));
+                        },
                         child: Padding(
                           padding: const EdgeInsets.only(top: 12.0),
                           child: Row(
