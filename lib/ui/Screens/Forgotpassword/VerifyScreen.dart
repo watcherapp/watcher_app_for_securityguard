@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pin_code_text_field/pin_code_text_field.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:watcher_app_for_securityguard/Common/appColors.dart';
 import 'package:watcher_app_for_securityguard/Common/fontStyles.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/CircleDesign.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyButton.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyTextFormField.dart';
+import 'package:watcher_app_for_securityguard/ui/Screens/OTPScreen2.dart';
 
 class VerifyScreen extends StatefulWidget {
   @override
@@ -38,7 +39,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                     Center(
                       child: Padding(
                         padding: const EdgeInsets.only(top: 8.0),
-                        child: Text("Enter Verification Code",
+                        child: Text("Enter Mobile Number",
                             style: fontConstants.bigTitleBlack),
                       ),
                     ),
@@ -59,7 +60,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                       ),
                     ),*/
                     SizedBox(
-                      height: 30,
+                      height: 40,
                     ),
                     MyTextFormField(
                       lable: "Mobile No or email",
@@ -72,36 +73,16 @@ class _VerifyScreenState extends State<VerifyScreen> {
                       hintText: "Enter mobile or email",
                     ),
                     SizedBox(
-                      height: 40,
-                    ),
-                    PinCodeTextField(
-                      //controller: txtOTP,
-                      autofocus: false,
-                      wrapAlignment: WrapAlignment.center,
-                      highlight: true,
-                      pinBoxHeight: 42,
-                      pinBoxWidth: 42,
-                      pinBoxRadius: 8,
-                      //pinBoxColor: Colors.grey[200],
-                      highlightColor: appPrimaryMaterialColor,
-                      defaultBorderColor: appPrimaryMaterialColor[700],
-                      hasTextBorderColor: Colors.black,
-                      maxLength: 6,
-                      pinBoxDecoration:
-                          ProvidedPinBoxDecoration.defaultPinBoxDecoration,
-                      pinTextStyle: TextStyle(fontSize: 17),
-                    ),
-                    SizedBox(
                       height: 30,
                     ),
                     MyButton(
-                        title: "Verify",
+                        title: "Next",
                         onPressed: () {
-                          /* Navigator.push(
+                          Navigator.push(
                               context,
                               PageTransition(
-                                  child: SignUp3(),
-                                  type: PageTransitionType.rightToLeft));*/
+                                  child: OTPScreen(),
+                                  type: PageTransitionType.rightToLeft));
                         }),
                     SizedBox(
                       height: 35,

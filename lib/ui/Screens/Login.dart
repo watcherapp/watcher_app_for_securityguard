@@ -81,11 +81,16 @@ class _LoginState extends State<Login> {
                     ),
                     InkWell(
                         onTap: () {
+                          /*Navigator.push(
+                              context,
+                              PageTransition(
+                                  child: VerifyScreen(),
+                                  type: PageTransitionType.bottomToTop));*/
                           Navigator.push(
                               context,
                               PageTransition(
                                   child: VerifyScreen(),
-                                  type: PageTransitionType.bottomToTop));
+                                  type: PageTransitionType.rightToLeft));
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(top: 12.0),
