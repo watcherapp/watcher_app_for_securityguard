@@ -158,8 +158,7 @@ class _VisitorListState extends State<VisitorList> {
                                         showDialog(
                                             context: context,
                                             builder: (BuildContext context) =>
-                                                ShowDialog()
-                                        );
+                                                ShowDialog());
                                       },
                                       child: Column(
                                         children: [
@@ -270,8 +269,7 @@ class _VisitorListState extends State<VisitorList> {
                                         showDialog(
                                             context: context,
                                             builder: (BuildContext context) =>
-                                                ShowDialog()
-                                        );
+                                                ShowDialog());
                                       },
                                       child: Column(
                                         children: [
@@ -380,8 +378,7 @@ class _VisitorListState extends State<VisitorList> {
                                         showDialog(
                                             context: context,
                                             builder: (BuildContext context) =>
-                                                ShowDialog()
-                                        );
+                                                ShowDialog());
                                       },
                                       child: Column(
                                         children: [
@@ -488,10 +485,9 @@ class _VisitorListState extends State<VisitorList> {
                                     GestureDetector(
                                       onTap: () {
                                         showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) =>
-                                              ShowDialog()
-                                        );
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                ShowDialog());
                                       },
                                       child: Column(
                                         children: [
@@ -583,26 +579,22 @@ class _ShowDialogState extends State<ShowDialog> {
           ),
         ),
         title: Text(
-            '       Select Report Type'),
+          'Select Report Type',
+          style: TextStyle(fontSize: 14),
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Column(
-              children:
-              dialogList.map((data) {
+              children: dialogList.map((data) {
                 return Column(
                   children: [
                     Column(
-                      mainAxisAlignment:
-                      MainAxisAlignment
-                          .center,
-                      crossAxisAlignment:
-                      CrossAxisAlignment
-                          .start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Divider(
-                          color:
-                          Colors.grey,
+                          color: Colors.grey,
                           height: 1,
                         ),
                         SizedBox(
@@ -611,8 +603,7 @@ class _ShowDialogState extends State<ShowDialog> {
                         Text(
                           data["lable"],
                           style: TextStyle(
-                            color:
-                            appPrimaryMaterialColor,
+                            color: appPrimaryMaterialColor,
                             fontSize: 16,
                           ),
                         ),
@@ -636,17 +627,11 @@ class _ShowDialogState extends State<ShowDialog> {
                     }
                     return "";
                   },
-                  hintText:
-                  "Please type Report Reason",
+                  hintText: "Please type Report Reason",
                 ),
                 Padding(
-                  padding:
-                  const EdgeInsets.only(
-                      right: 50,
-                      left: 50),
-                  child: MyButton(
-                      title: "Report",
-                      onPressed: () {}),
+                  padding: const EdgeInsets.only(right: 50, left: 50),
+                  child: MyButton(title: "Report", onPressed: () {}),
                 ),
               ],
             ),
@@ -656,4 +641,3 @@ class _ShowDialogState extends State<ShowDialog> {
     );
   }
 }
-

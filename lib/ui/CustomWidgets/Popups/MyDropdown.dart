@@ -30,11 +30,12 @@ class _MyDropDownState extends State<MyDropDown> {
                     onTap: () {}),
                 Expanded(
                   child: Center(
-                    child: Text("Select ${widget.dropDownTitle ?? ""}",
+                    child: Text("${widget.dropDownTitle ?? ""}"),
+                    /*Text("Select ${widget.dropDownTitle ?? ""}",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: appPrimaryMaterialColor)),
+                            color: appPrimaryMaterialColor)),*/
                   ),
                 ),
               ],

@@ -15,6 +15,9 @@ class AddVisitorScreen extends StatefulWidget {
 }
 
 class _AddVisitorScreenState extends State<AddVisitorScreen> {
+  String reasonData, relativeData;
+  List reason = ["Relative", "Visit", "Delivery"];
+  List relative = ["1", "2", "3"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,7 +129,7 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                 padding: const EdgeInsets.only(top: 8.0),
                 child: DialogOpenFormField(
                     lable: "Select Wings & Flat",
-                    //value: selectedCountry,
+                    //value: reasonData,
                     onTap: () {
                       // print("click");
                       FocusScope.of(context).unfocus();
@@ -136,10 +139,10 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                           padding: const EdgeInsets.only(top: 4.0),
                           child: MyDropDown(
                               dropDownTitle: "Select C",
-                              //  dropDownData: country,
+                              // dropDownData: reason,
                               onSelectValue: (value) {
                                 setState(() {
-                                  //  selectedCountry = value;
+                                  // reasonData = value;
                                 });
                               }),
                         ),
@@ -150,20 +153,20 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                 padding: const EdgeInsets.only(top: 8.0),
                 child: DialogOpenFormField(
                     lable: "Select Relation",
-                    //value: selectedCountry,
+                    value: relativeData,
                     onTap: () {
-                      // print("click");
+                      print("click");
                       FocusScope.of(context).unfocus();
                       showDialog(
                         context: context,
                         child: Padding(
                           padding: const EdgeInsets.only(top: 4.0),
                           child: MyDropDown(
-                              dropDownTitle: "Select C",
-                              //  dropDownData: country,
+                              dropDownTitle: "Select Relation",
+                              dropDownData: relative,
                               onSelectValue: (value) {
                                 setState(() {
-                                  //  selectedCountry = value;
+                                  relativeData = value;
                                 });
                               }),
                         ),
@@ -174,7 +177,7 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                 padding: const EdgeInsets.only(top: 8.0),
                 child: DialogOpenFormField(
                     lable: "Visit Reason",
-                    //value: selectedCountry,
+                    value: reasonData,
                     onTap: () {
                       // print("click");
                       FocusScope.of(context).unfocus();
@@ -183,11 +186,11 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                         child: Padding(
                           padding: const EdgeInsets.only(top: 4.0),
                           child: MyDropDown(
-                              dropDownTitle: "Select C",
-                              //  dropDownData: country,
+                              dropDownTitle: "Visit Reason",
+                              dropDownData: reason,
                               onSelectValue: (value) {
                                 setState(() {
-                                  //  selectedCountry = value;
+                                  reasonData = value;
                                 });
                               }),
                         ),

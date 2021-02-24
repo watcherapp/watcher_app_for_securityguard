@@ -17,6 +17,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   bool password = true;
   GlobalKey _formKey = GlobalKey<FormState>();
+  bool isVerify = true;
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +90,9 @@ class _LoginState extends State<Login> {
                           Navigator.push(
                               context,
                               PageTransition(
-                                  child: VerifyScreen(),
+                                  child: VerifyScreen(
+                                    verifyData: isVerify,
+                                  ),
                                   type: PageTransitionType.rightToLeft));
                         },
                         child: Padding(

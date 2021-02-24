@@ -5,9 +5,12 @@ import 'package:watcher_app_for_securityguard/Common/appColors.dart';
 import 'package:watcher_app_for_securityguard/Common/fontStyles.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/CircleDesign.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyButton.dart';
+import 'package:watcher_app_for_securityguard/ui/Screens/Forgotpassword/PasswordScreen.dart';
 import 'package:watcher_app_for_securityguard/ui/Screens/Registration/SignUp3.dart';
 
 class OTPScreen extends StatefulWidget {
+  var otpData;
+  OTPScreen({this.otpData});
   @override
   _OTPScreenState createState() => _OTPScreenState();
 }
@@ -85,11 +88,30 @@ class _OTPScreenState extends State<OTPScreen> {
                     MyButton(
                         title: "Verify",
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              PageTransition(
-                                  child: SignUp3(),
-                                  type: PageTransitionType.rightToLeft));
+                          if (widget.otpData == true) {
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                    child: PasswordScreen(),
+                                    type: PageTransitionType.rightToLeft));
+                          } else {
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                    child: SignUp3(),
+                                    type: PageTransitionType.rightToLeft));
+                          }
+                          /*    widget.otpData
+                              ? Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      child: PasswordScreen(),
+                                      type: PageTransitionType.rightToLeft))
+                              : Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      child: SignUp3(),
+                                      type: PageTransitionType.rightToLeft));*/
                         }),
                     SizedBox(
                       height: 35,

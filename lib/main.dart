@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:watcher_app_for_securityguard/Common/appColors.dart';
 import 'package:watcher_app_for_securityguard/ui/Screens/Splash.dart';
+
+import 'Providers/BottomNavigationBarProvider.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,11 +12,17 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primaryColor: appPrimaryMaterialColor, fontFamily: 'WorkSans'),
-      home: Splash(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<BottomNavigationBarProvider>(
+            create: (context) => BottomNavigationBarProvider())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            primaryColor: appPrimaryMaterialColor, fontFamily: 'WorkSans'),
+        home: Splash(),
+      ),
     );
   }
 }

@@ -210,12 +210,6 @@ class _SignUp3State extends State<SignUp3> {
                               ),
                               MyButton(
                                 onPressed: () {
-                                  /* Navigator.push(
-                                      context,
-                                      PageTransition(
-                                          child: HomeScreen(),
-                                          type:
-                                              PageTransitionType.rightToLeft));*/
                                   Navigator.pushAndRemoveUntil(
                                       context,
                                       PageTransition(

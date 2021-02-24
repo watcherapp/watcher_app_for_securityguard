@@ -8,6 +8,9 @@ import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyTextFormField.d
 import 'package:watcher_app_for_securityguard/ui/Screens/OTPScreen2.dart';
 
 class VerifyScreen extends StatefulWidget {
+  var verifyData;
+  VerifyScreen({this.verifyData});
+
   @override
   _VerifyScreenState createState() => _VerifyScreenState();
 }
@@ -63,14 +66,14 @@ class _VerifyScreenState extends State<VerifyScreen> {
                       height: 40,
                     ),
                     MyTextFormField(
-                      lable: "Mobile No or email",
+                      lable: "Mobile Number",
                       validator: (val) {
                         if (val.isEmpty) {
-                          return "Please Enter Mobile or email";
+                          return "Please Enter Mobile Number";
                         }
                         return "";
                       },
-                      hintText: "Enter mobile or email",
+                      hintText: "Enter mobile number",
                     ),
                     SizedBox(
                       height: 30,
@@ -81,7 +84,9 @@ class _VerifyScreenState extends State<VerifyScreen> {
                           Navigator.push(
                               context,
                               PageTransition(
-                                  child: OTPScreen(),
+                                  child: OTPScreen(
+                                    otpData: widget.verifyData,
+                                  ),
                                   type: PageTransitionType.rightToLeft));
                         }),
                     SizedBox(
