@@ -198,7 +198,7 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                     }),
               ),
               SizedBox(
-                height: 20,
+                height: 18,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

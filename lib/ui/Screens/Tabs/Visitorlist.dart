@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watcher_app_for_securityguard/Common/appColors.dart';
 
-import '../../CustomWidgets/MyButton.dart';
 import '../../CustomWidgets/MyTextFormField.dart';
 
 class VisitorList extends StatefulWidget {
@@ -578,9 +577,12 @@ class _ShowDialogState extends State<ShowDialog> {
             Radius.circular(10.0),
           ),
         ),
-        title: Text(
-          'Select Report Type',
-          style: TextStyle(fontSize: 14),
+        title: Center(
+          child: Text(
+            'Select Report Type',
+            style: TextStyle(
+                fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+          ),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -595,7 +597,7 @@ class _ShowDialogState extends State<ShowDialog> {
                       children: [
                         Divider(
                           color: Colors.grey,
-                          height: 1,
+                          height: 0.5,
                         ),
                         SizedBox(
                           height: 15,
@@ -604,7 +606,7 @@ class _ShowDialogState extends State<ShowDialog> {
                           data["lable"],
                           style: TextStyle(
                             color: appPrimaryMaterialColor,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                         SizedBox(
@@ -630,9 +632,23 @@ class _ShowDialogState extends State<ShowDialog> {
                   hintText: "Please type Report Reason",
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 50, left: 50),
-                  child: MyButton(title: "Report", onPressed: () {}),
-                ),
+                    padding:
+                        const EdgeInsets.only(right: 50, left: 50, top: 30),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      height: 40,
+                      child: RaisedButton(
+                          child: Text("Report",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold)),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6)),
+                          color: appPrimaryMaterialColor,
+                          onPressed: () {}),
+                    )),
+                /*MyButton(title: "Report", onPressed: () {}),*/
               ],
             ),
           ],
