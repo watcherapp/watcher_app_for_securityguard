@@ -4,8 +4,8 @@ import 'package:page_transition/page_transition.dart';
 import 'package:watcher_app_for_securityguard/Common/appColors.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/DialogOpenFormField.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyButton.dart';
+import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyDropdown.dart';
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyTextFormField.dart';
-import 'package:watcher_app_for_securityguard/ui/CustomWidgets/Popups/MyDropdown.dart';
 
 import 'OTPScreen2.dart';
 
@@ -37,7 +37,9 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                 color: Colors.white,
                 size: 19,
               ),
-              onPressed: () {})),
+              onPressed: () {
+                Navigator.pop(context);
+              })),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 11.0, right: 11),
@@ -185,7 +187,7 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                         context: context,
                         child: Padding(
                           padding: const EdgeInsets.only(top: 4.0),
-                          child: MyDropDown(
+                          child: MyDropDown1(
                               dropDownTitle: "Visit Reason",
                               dropDownData: reason,
                               onSelectValue: (value) {
@@ -389,6 +391,129 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class MyDropDown1 extends StatefulWidget {
+  String dropDownTitle;
+  List dropDownData = [];
+  Function onSelectValue;
+
+  MyDropDown1({this.dropDownTitle, this.dropDownData, this.onSelectValue});
+
+  @override
+  _MyDropDown1State createState() => _MyDropDown1State();
+}
+
+class _MyDropDown1State extends State<MyDropDown1> {
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+                top: 15.0, bottom: 15, left: 20.0, right: 22),
+            child: Row(
+              children: [
+                GestureDetector(
+                    child: Icon(Icons.backspace_rounded,
+                        size: 22, color: appPrimaryMaterialColor),
+                    onTap: () {
+                      Navigator.pop(context);
+                    }),
+                Expanded(
+                  child: Center(
+                    child: Text("${widget.dropDownTitle ?? ""}"),
+                    /*Text("Select ${widget.dropDownTitle ?? ""}",
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: appPrimaryMaterialColor)),*/
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: 0.5,
+            color: Colors.grey[400],
+          ),
+          /*Padding(
+            padding: const EdgeInsets.only(
+                left: 10.0, right: 10.0, top: 10.0, bottom: 8.0),
+            child: TextFormField(
+              decoration: InputDecoration(
+                fillColor: Colors.grey[200],
+                filled: true,
+                prefixIcon: Icon(Icons.search_outlined, size: 20),
+                hintText: "Search",
+                hintStyle: TextStyle(fontSize: 15, color: Colors.grey),
+                contentPadding:
+                    EdgeInsets.only(left: 15, right: 8, top: 10, bottom: 10),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(
+                    width: 0,
+                    style: BorderStyle.none,
+                  ),
+                ),
+              ),
+            ),
+          ),*/
+          ListView.builder(
+              shrinkWrap: true,
+              itemCount: widget.dropDownData.length ?? 0,
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {
+                    widget.onSelectValue(widget.dropDownData[index]);
+                    Navigator.of(context).pop();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 12.0, left: 16, bottom: 12.0),
+                    child: Text(widget.dropDownData[index],
+                        style: TextStyle(fontSize: 15, color: Colors.black87)),
+                  ),
+                );
+              }),
+          SizedBox(
+            height: 6,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0, right: 10, bottom: 13),
+            child: MyTextFormField(
+              lable: "Other",
+              validator: (val) {
+                if (val.isEmpty) {
+                  return "Please Enter type Visit Reason";
+                }
+                return "";
+              },
+              hintText: "Please type Visit Reason",
+            ),
+          ),
+          Padding(
+              padding: const EdgeInsets.only(top: 8, bottom: 10),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width / 2.7,
+                height: 40,
+                child: RaisedButton(
+                    child: Text("Ok",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6)),
+                    color: appPrimaryMaterialColor,
+                    onPressed: () {}),
+              )),
+        ],
       ),
     );
   }

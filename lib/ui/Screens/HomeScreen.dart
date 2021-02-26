@@ -77,8 +77,7 @@ class _HomeScreenState extends State<HomeScreen>
               icon: CupertinoIcons.home,
               title: "Home",
               imageIcon: "images/Watcherlogo.png"),
-          BottomBarItem(
-              icon: CupertinoIcons.chat_bubble_2_fill, title: "Emergency"),
+          BottomBarItem(icon: CupertinoIcons.phone, title: "Emergency"),
           BottomBarItem(icon: CupertinoIcons.add, title: "More"),
         ],
       ),
