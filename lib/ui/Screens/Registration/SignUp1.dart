@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:watcher_app_for_securityguard/Common/appColors.dart';
@@ -64,15 +65,42 @@ class _SignUp1State extends State<SignUp1> {
                     SizedBox(
                       height: 30,
                     ),
-                    MyTextFormField(
-                        lable: "Mobile No",
-                        validator: (val) {
-                          if (val.isEmpty) {
-                            return "Please Enter Mobile or email";
-                          }
-                          return "";
-                        },
-                        hintText: "Enter mobile"),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // SizedBox(
+                        //   width: 40,
+                        //   height: 40,
+                        //   child: CountryCodePicker(
+                        //     // onChanged: _onCountryChange,
+                        //     initialSelection: 'IT',
+                        //     favorite: ['+91','IN'],
+                        //     showCountryOnly: false,
+                        //     showOnlyCountryWhenClosed: false,
+                        //     alignLeft: false,
+                        //   ),
+                        // ),
+                        Expanded(
+                          child: MyTextFormField(
+                              lable: "Mobile No",
+                              validator: (val) {
+                                if (val.isEmpty) {
+                                  return "Please Enter Mobile or email";
+                                }
+                                return "";
+                              },
+                              icon: CountryCodePicker(
+                                // onChanged: _onCountryChange,
+                                initialSelection: 'IT',
+                                favorite: ['+91','IN'],
+                                showCountryOnly: false,showFlag: true,
+                                showOnlyCountryWhenClosed: false,
+                                alignLeft: false,
+                              ),
+                              hintText: "Enter mobile"),
+                        ),
+                      ],
+                    ),
                     SizedBox(
                       height: 20,
                     ),

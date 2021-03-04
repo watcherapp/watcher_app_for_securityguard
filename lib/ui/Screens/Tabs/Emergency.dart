@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:watcher_app_for_securityguard/ui/CustomWidgets/DialogOpenFormField.dart';
+import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyDropdown.dart';
 
 import '../../../Common/appColors.dart';
 import '../../CustomWidgets/MyButton.dart';
@@ -14,6 +16,9 @@ class Emergency extends StatefulWidget {
 class _EmergencyState extends State<Emergency> {
   Size _screenSize;
   TextEditingController typeController = TextEditingController();
+
+  String wingName;
+
   List dataList = [
     {
       "lable": "Ambulance",
@@ -42,6 +47,12 @@ class _EmergencyState extends State<Emergency> {
     {
       "lable": "Other",
     },
+  ];
+  List wingList = [
+    "A",
+    "B",
+    "C",
+    "D",
   ];
 
   void launchUrl(String url) async {
@@ -123,7 +134,7 @@ class _EmergencyState extends State<Emergency> {
                           ),
                           onTap: () {
                             print(data["lable"]);
-                            launchUrl("tel:9429828152");
+                            launchUrl("tel:9879208321");
                           },
                         )
                       ],
@@ -132,7 +143,19 @@ class _EmergencyState extends State<Emergency> {
                 }).toList()),
               ),
               SizedBox(
-                height: 20,
+                height: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: Text("Note: Call or Data rates may apply",
+                    style: TextStyle(
+                      color: Colors.grey[500],
+                      fontWeight: FontWeight.w400,
+                      fontSize: 13,
+                    )),
+              ),
+              SizedBox(
+                height: 15,
               ),
               Divider(
                 color: Colors.grey,
@@ -151,6 +174,35 @@ class _EmergencyState extends State<Emergency> {
                     fontSize: 15,
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 3.0, right: 3),
+                child: DialogOpenFormField(
+                    lable: "Select Wing",
+                    hintLable: "Wing Name",
+                    value: wingName,
+                    onTap: () {
+                      print("click");
+                      FocusScope.of(context).unfocus();
+                      showDialog(
+                        context: context,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 4.0),
+                          child: MyDropDown(
+                              isSearchable: false,
+                              dropDownTitle: "Select Relation",
+                              dropDownData: wingList,
+                              onSelectValue: (value) {
+                                setState(() {
+                                  wingName = value;
+                                });
+                              }),
+                        ),
+                      );
+                    }),
               ),
               SizedBox(
                 height: 10,
@@ -238,10 +290,111 @@ class _EmergencyState extends State<Emergency> {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 11.0, right: 11),
-                child: MyButton(title: "Raise an SOS", onPressed: () {}),
+                child: MyButton(title: "Raise an SOS", onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          ShowDialog());
+                }),
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class ShowDialog extends StatefulWidget {
+  @override
+  _ShowDialogState createState() => _ShowDialogState();
+}
+
+class _ShowDialogState extends State<ShowDialog> {
+  List dialogList = [
+    {
+      "lable": "Physically Misbehavior",
+    },
+    {
+      "lable": "Verbal Misbehavior",
+    },
+    {
+      "lable": "Threten on me",
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10.0),
+          ),
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Confirm to Raise SOS',
+              style: TextStyle(
+                  fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Icon(
+              Icons.report,
+              size: 33,
+              color: Colors.red,
+            ),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "You may be charged for raising a false alarm. Confirm it?",
+              style: TextStyle(
+                height: 1.5,
+                color: appPrimaryMaterialColor,
+                fontSize: 14,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                RaisedButton(
+                    child: Text("Cancel",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            )),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6)),
+                    color: Colors.red[400].withOpacity(0.9),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      print("Cancel");
+                    }),
+                RaisedButton(
+                    child: Text("Raise",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            )),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6)),
+                    color: Colors.green[400],
+                    onPressed: () {
+                      Navigator.pop(context);
+                      print("Raise");
+                    }),
+              ],
+            ),
+          ],
         ),
       ),
     );

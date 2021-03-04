@@ -10,6 +10,7 @@ class MyTextFormField extends StatelessWidget {
   Widget hideShowText;
   TextEditingController controller;
   bool isPassword;
+  Widget icon;
 
   MyTextFormField(
       {this.keyboardType,
@@ -19,7 +20,8 @@ class MyTextFormField extends StatelessWidget {
       this.controller,
       this.isPassword = false,
       this.validator,
-      this.hideShowText});
+      this.hideShowText,
+      this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +53,7 @@ class MyTextFormField extends StatelessWidget {
                     EdgeInsets.only(left: 15, right: 8, top: 4, bottom: 4),
                 counterText: "",
                 suffix: hideShowText,
+                prefixIcon:icon,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(
