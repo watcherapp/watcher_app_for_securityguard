@@ -21,7 +21,7 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
           automaticallyImplyLeading: false,
           elevation: 0.5,
@@ -136,8 +136,7 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                       // print("click");
                       FocusScope.of(context).unfocus();
                       showDialog(
-                        context: context,
-                        child: Padding(
+                        builder: (context) => Padding(
                           padding: const EdgeInsets.only(top: 4.0),
                           child: MyDropDown(
                               dropDownTitle: "Select C",
@@ -148,6 +147,7 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                                 });
                               }),
                         ),
+                        context: context,
                       );
                     }),
               ),
@@ -160,8 +160,7 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                       print("click");
                       FocusScope.of(context).unfocus();
                       showDialog(
-                        context: context,
-                        child: Padding(
+                        builder: (context) => Padding(
                           padding: const EdgeInsets.only(top: 4.0),
                           child: MyDropDown(
                               dropDownTitle: "Select Relation",
@@ -172,6 +171,7 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                                 });
                               }),
                         ),
+                        context: context,
                       );
                     }),
               ),
@@ -184,8 +184,7 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                       // print("click");
                       FocusScope.of(context).unfocus();
                       showDialog(
-                        context: context,
-                        child: Padding(
+                        builder: (context) => Padding(
                           padding: const EdgeInsets.only(top: 4.0),
                           child: MyDropDown1(
                               dropDownTitle: "Visit Reason",
@@ -196,6 +195,7 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                                 });
                               }),
                         ),
+                        context: context,
                       );
                     }),
               ),

@@ -188,8 +188,7 @@ class _EmergencyState extends State<Emergency> {
                       print("click");
                       FocusScope.of(context).unfocus();
                       showDialog(
-                        context: context,
-                        child: Padding(
+                        builder: (context) => Padding(
                           padding: const EdgeInsets.only(top: 4.0),
                           child: MyDropDown(
                               isSearchable: false,
@@ -201,6 +200,7 @@ class _EmergencyState extends State<Emergency> {
                                 });
                               }),
                         ),
+                        context: context,
                       );
                     }),
               ),
@@ -290,12 +290,13 @@ class _EmergencyState extends State<Emergency> {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 11.0, right: 11),
-                child: MyButton(title: "Raise an SOS", onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) =>
-                          ShowDialog());
-                }),
+                child: MyButton(
+                    title: "Raise an SOS",
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) => ShowDialog());
+                    }),
               ),
             ],
           ),
@@ -338,7 +339,9 @@ class _ShowDialogState extends State<ShowDialog> {
             Text(
               'Confirm to Raise SOS',
               style: TextStyle(
-                  fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black),
             ),
             SizedBox(
               width: 5,
@@ -364,14 +367,15 @@ class _ShowDialogState extends State<ShowDialog> {
             SizedBox(
               height: 20,
             ),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 RaisedButton(
                     child: Text("Cancel",
                         style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            )),
+                          color: Colors.white,
+                          fontSize: 17,
+                        )),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6)),
                     color: Colors.red[400].withOpacity(0.9),
@@ -382,9 +386,9 @@ class _ShowDialogState extends State<ShowDialog> {
                 RaisedButton(
                     child: Text("Raise",
                         style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            )),
+                          color: Colors.white,
+                          fontSize: 17,
+                        )),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6)),
                     color: Colors.green[400],

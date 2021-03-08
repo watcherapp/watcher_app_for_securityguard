@@ -8,8 +8,6 @@ import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyButton.dart';
 import 'package:watcher_app_for_securityguard/ui/Screens/Forgotpassword/PasswordScreen.dart';
 import 'package:watcher_app_for_securityguard/ui/Screens/Registration/SignUp3.dart';
 
-
-
 class OTPScreen extends StatefulWidget {
   var otpData;
   OTPScreen({this.otpData});
@@ -21,7 +19,7 @@ class _OTPScreenState extends State<OTPScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: appPrimaryMaterialColor,
       body: Column(
         children: [

@@ -19,7 +19,7 @@ class _SignUp1State extends State<SignUp1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: appPrimaryMaterialColor,
       body: Column(
         children: [
@@ -92,8 +92,8 @@ class _SignUp1State extends State<SignUp1> {
                               icon: CountryCodePicker(
                                 // onChanged: _onCountryChange,
                                 initialSelection: 'IT',
-                                favorite: ['+91','IN'],
-                                showCountryOnly: false,showFlag: true,
+                                favorite: ['+91', 'IN'],
+                                showCountryOnly: false, showFlag: true,
                                 showOnlyCountryWhenClosed: false,
                                 alignLeft: false,
                               ),
