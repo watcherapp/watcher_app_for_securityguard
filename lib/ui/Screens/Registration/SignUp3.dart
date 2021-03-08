@@ -97,7 +97,7 @@ class _SignUp3State extends State<SignUp3> {
                                   height: 15,
                                 ),
                                 MyTextFormField(
-                                    lable: "First Name",
+                                    lable: "First Name *",
                                     validator: (val) {
                                       if (val.isEmpty) {
                                         return "Please Enter First Name";
@@ -106,7 +106,16 @@ class _SignUp3State extends State<SignUp3> {
                                     },
                                     hintText: "Enter first name"),
                                 MyTextFormField(
-                                    lable: "Last Name",
+                                    lable: "Middle Name",
+                                    validator: (val) {
+                                      if (val.isEmpty) {
+                                        return "Please Enter Middle Name";
+                                      }
+                                      return "";
+                                    },
+                                    hintText: "Enter Middle name"),
+                                MyTextFormField(
+                                    lable: "Last Name *",
                                     validator: (val) {
                                       if (val.isEmpty) {
                                         return "Please Enter Last Name";
@@ -115,7 +124,7 @@ class _SignUp3State extends State<SignUp3> {
                                     },
                                     hintText: "Enter last name"),
                                 MyTextFormField(
-                                    lable: "email (optional)",
+                                    lable: "email (Optional)",
                                     validator: (val) {
                                       if (val.isEmpty) {
                                         return "Please Enter Last Name";
@@ -123,9 +132,34 @@ class _SignUp3State extends State<SignUp3> {
                                       return "";
                                     },
                                     hintText: "Enter email"),
-                                SizedBox(
-                                  height: 30,
-                                ),
+                                MyTextFormField(
+                                    lable: "Address *",
+                                    validator: (val) {
+                                      if (val.isEmpty) {
+                                        return "Please Enter Address";
+                                      }
+                                      return "";
+                                    },
+                                    hintText: "Enter Address"),
+
+                                MyTextFormField(
+                                    lable: "Parking Number (Optional)",
+                                    validator: (val) {
+                                      if (val.isEmpty) {
+                                        return "Please Enter Parking Number";
+                                      }
+                                      return "";
+                                    },
+                                    hintText: "Enter Parking Number"),
+                                MyTextFormField(
+                                    lable: "Car registration number (Optional)",
+                                    validator: (val) {
+                                      if (val.isEmpty) {
+                                        return "Please Enter Car registration number";
+                                      }
+                                      return "";
+                                    },
+                                    hintText: "Enter Car registration number"),
                                 /* MyButton(
                                     title: "Next",
                                     onPressed: () {

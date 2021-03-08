@@ -133,26 +133,49 @@ class _VisitorListState extends State<VisitorList> {
                                         ),
                                       ],
                                     ),
-                                    Container(
-                                      width: 40.0,
-                                      height: 40.0,
-                                      child: Center(
-                                        child: Text(
-                                          "IN",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: 'WorkSans Bold',
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 14,
+                                    true == false
+                                        ? Container(
+                                            width: 40.0,
+                                            height: 40.0,
+                                            child: Center(
+                                              child: Text(
+                                                "Allowed",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: 'WorkSans Bold',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 10,
+                                                ),
+                                              ),
+                                            ),
+                                            decoration: new BoxDecoration(
+                                              color: Colors.green,
+                                              borderRadius: new BorderRadius
+                                                      .all(
+                                                  new Radius.circular(90.0)),
+                                            ),
+                                          )
+                                        : Container(
+                                            width: 40.0,
+                                            height: 40.0,
+                                            child: Center(
+                                              child: Text(
+                                                "Denied",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: 'WorkSans Bold',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 10,
+                                                ),
+                                              ),
+                                            ),
+                                            decoration: new BoxDecoration(
+                                              color: Colors.red,
+                                              borderRadius: new BorderRadius
+                                                      .all(
+                                                  new Radius.circular(90.0)),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      decoration: new BoxDecoration(
-                                        color: Colors.green,
-                                        borderRadius: new BorderRadius.all(
-                                            new Radius.circular(90.0)),
-                                      ),
-                                    ),
                                     GestureDetector(
                                       onTap: () {
                                         showDialog(
@@ -244,23 +267,46 @@ class _VisitorListState extends State<VisitorList> {
                                         ),
                                       ],
                                     ),
-                                    Container(
+                                    true == false
+                                        ? Container(
                                       width: 40.0,
                                       height: 40.0,
                                       child: Center(
                                         child: Text(
-                                          "IN",
+                                          "Allowed",
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontFamily: 'WorkSans Bold',
                                             fontWeight: FontWeight.w400,
-                                            fontSize: 14,
+                                            fontSize: 10,
                                           ),
                                         ),
                                       ),
                                       decoration: new BoxDecoration(
                                         color: Colors.green,
-                                        borderRadius: new BorderRadius.all(
+                                        borderRadius: new BorderRadius
+                                            .all(
+                                            new Radius.circular(90.0)),
+                                      ),
+                                    )
+                                        : Container(
+                                      width: 40.0,
+                                      height: 40.0,
+                                      child: Center(
+                                        child: Text(
+                                          "Denied",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'WorkSans Bold',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 10,
+                                          ),
+                                        ),
+                                      ),
+                                      decoration: new BoxDecoration(
+                                        color: Colors.red,
+                                        borderRadius: new BorderRadius
+                                            .all(
                                             new Radius.circular(90.0)),
                                       ),
                                     ),
@@ -353,23 +399,46 @@ class _VisitorListState extends State<VisitorList> {
                                         ),
                                       ],
                                     ),
-                                    Container(
+                                    true == false
+                                        ? Container(
                                       width: 40.0,
                                       height: 40.0,
                                       child: Center(
                                         child: Text(
-                                          "IN",
+                                          "Allowed",
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontFamily: 'WorkSans Bold',
                                             fontWeight: FontWeight.w400,
-                                            fontSize: 14,
+                                            fontSize: 10,
                                           ),
                                         ),
                                       ),
                                       decoration: new BoxDecoration(
                                         color: Colors.green,
-                                        borderRadius: new BorderRadius.all(
+                                        borderRadius: new BorderRadius
+                                            .all(
+                                            new Radius.circular(90.0)),
+                                      ),
+                                    )
+                                        : Container(
+                                      width: 40.0,
+                                      height: 40.0,
+                                      child: Center(
+                                        child: Text(
+                                          "Denied",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'WorkSans Bold',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 10,
+                                          ),
+                                        ),
+                                      ),
+                                      decoration: new BoxDecoration(
+                                        color: Colors.red,
+                                        borderRadius: new BorderRadius
+                                            .all(
                                             new Radius.circular(90.0)),
                                       ),
                                     ),
@@ -462,23 +531,46 @@ class _VisitorListState extends State<VisitorList> {
                                         ),
                                       ],
                                     ),
-                                    Container(
+                                    true == true
+                                        ? Container(
                                       width: 40.0,
                                       height: 40.0,
                                       child: Center(
                                         child: Text(
-                                          "IN",
+                                          "Allowed",
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontFamily: 'WorkSans Bold',
                                             fontWeight: FontWeight.w400,
-                                            fontSize: 14,
+                                            fontSize: 10,
                                           ),
                                         ),
                                       ),
                                       decoration: new BoxDecoration(
                                         color: Colors.green,
-                                        borderRadius: new BorderRadius.all(
+                                        borderRadius: new BorderRadius
+                                            .all(
+                                            new Radius.circular(90.0)),
+                                      ),
+                                    )
+                                        : Container(
+                                      width: 40.0,
+                                      height: 40.0,
+                                      child: Center(
+                                        child: Text(
+                                          "Denied",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'WorkSans Bold',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 10,
+                                          ),
+                                        ),
+                                      ),
+                                      decoration: new BoxDecoration(
+                                        color: Colors.red,
+                                        borderRadius: new BorderRadius
+                                            .all(
                                             new Radius.circular(90.0)),
                                       ),
                                     ),
@@ -569,6 +661,7 @@ class _ShowDialogState extends State<ShowDialog> {
       "lable": "Threten on me",
     },
   ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
