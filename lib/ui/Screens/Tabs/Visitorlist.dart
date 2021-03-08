@@ -57,6 +57,7 @@ class _VisitorListState extends State<VisitorList> {
                     controller: _tabController1,
                     unselectedLabelColor: Colors.black,
                     labelColor: Colors.white,
+                    indicatorSize: TabBarIndicatorSize.tab,
                     indicatorColor: appPrimaryMaterialColor,
                     indicator: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
@@ -408,7 +409,7 @@ class _VisitorListState extends State<VisitorList> {
                             return Card(
                               elevation: 1,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(5),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(15.0),
