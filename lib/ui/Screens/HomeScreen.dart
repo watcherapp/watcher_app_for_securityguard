@@ -19,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
+
   List<Widget> _widgetOptions = <Widget>[
     VisitorList(),
     ParkingDetail(),
