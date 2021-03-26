@@ -13,8 +13,7 @@ import 'package:watcher_app_for_securityguard/ui/CustomWidgets/MyTextFormField.d
 import 'package:watcher_app_for_securityguard/ui/CustomWidgets/PopUp.dart';
 import 'package:watcher_app_for_securityguard/ui/Screens/Forgotpassword/VerifyScreen.dart';
 import 'package:watcher_app_for_securityguard/ui/Screens/HomeScreen.dart';
-
-import 'Registration/SignUp1.dart';
+import 'package:watcher_app_for_securityguard/ui/Screens/Registration/SignUp3.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -52,26 +51,29 @@ class _LoginState extends State<Login> {
           'fcmToken': 'ccdsacscavgscdgfcvdfbsvcg',
           'deviceType': deviceType,
         };
-        Services.Login(api, data_body).then((data) async {
-          if (data.length > 0) {
-            postData = data;
-            login_pref.setBool("isApprove", postData[0]["isApprove"]);
-            login_pref.setString("firstName", postData[0]["firstName"]);
-            login_pref.setString("lastName", postData[0]["lastName"]);
-            login_pref.setString("id", postData[0]["_id"]);
-            login_pref.setString(
-                "staffCategoryId", postData[0]["staffCategoryId"]);
-            login_pref.setString("mobileNo1", postData[0]["mobileNo1"]);
-            login_pref.setString("emailId", postData[0]["emailId"]);
-            login_pref.setString("societyId", postData[0]["societyId"]);
-            login_pref.setString("staffNo", postData[0]["staffNo"]);
-            login_pref.setString("fcmToken", postData[0]["fcmToken"]);
+        Services.apiHandler(apiName: api, body: data_body).then((data) async {
+          if (data.Data.length > 0) {
+            postData = data.Data;
+            print(postData);
+            setState(() {
+              login_pref.setBool("isApprove", postData[0]["isApprove"]??"");
+              login_pref.setString("firstName", postData[0]["firstName"]??"");
+              login_pref.setString("lastName", postData[0]["lastName"]??"");
+              login_pref.setString("id", postData[0]["_id"]??"");
+              login_pref.setString(
+                  "staffCategoryId", postData[0]["staffCategoryId"]??"");
+              login_pref.setString("mobileNo1", postData[0]["mobileNo1"]??"");
+              login_pref.setString("emailId", postData[0]["emailId"]??"");
+              login_pref.setString("societyId", postData[0]["societyId"]??"");
+              login_pref.setString("staffNo", postData[0]["staffNo"]??"");
+              login_pref.setString("fcmToken", postData[0]["fcmToken"]??"");
+            });
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => HomeScreen()),
             );
           } else {
-            // Fluttertoast.showToast(msg: "Invalid username or password!");
+            //Fluttertoast.showToast(msg: "Invalid username or password!");
             showDialog(
                 context: context,
                 builder: (context) => PopUp(
@@ -242,10 +244,15 @@ class _LoginState extends State<Login> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
+                            /*Navigator.push(
                                 context,
                                 PageTransition(
                                     child: SignUp1(),
+                                    type: PageTransitionType.bottomToTop));*/
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                    child: SignUp3(),
                                     type: PageTransitionType.bottomToTop));
                           },
                           child: RichText(

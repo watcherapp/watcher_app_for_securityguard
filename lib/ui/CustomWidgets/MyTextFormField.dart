@@ -53,7 +53,15 @@ class MyTextFormField extends StatelessWidget {
                     EdgeInsets.only(left: 15, right: 8, top: 4, bottom: 4),
                 counterText: "",
                 suffix: hideShowText,
-                prefixIcon:icon,
+                prefixIcon: icon,
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(
+                    width: 0,
+                    style: BorderStyle.solid,
+                    color: Colors.red,
+                  ),
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(

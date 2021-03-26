@@ -43,6 +43,11 @@ dependencies:
   device_info: ^2.0.0
   fluttertoast: ^3.0.3
   image_picker: any
+  flutter_native_image: ^0.0.5+3
+  firebase_core: any
+  firebase_auth: any
+  firebase_messaging: any
+  http:
 
 
 

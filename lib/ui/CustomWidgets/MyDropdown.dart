@@ -32,7 +32,9 @@ class _MyDropDownState extends State<MyDropDown> {
                 GestureDetector(
                     child: Icon(Icons.backspace_rounded,
                         size: 22, color: appPrimaryMaterialColor),
-                    onTap: () {}),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    }),
                 Expanded(
                   child: Center(
                     child: Text("${widget.dropDownTitle ?? ""}"),

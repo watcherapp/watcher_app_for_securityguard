@@ -1,5 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:watcher_app_for_securityguard/Common/Services.dart';
 import 'package:watcher_app_for_securityguard/Common/appColors.dart';
+import 'package:watcher_app_for_securityguard/ui/Screens/Tabs/AllVisitorsList.dart';
+import 'package:watcher_app_for_securityguard/ui/Screens/Tabs/TodayVisitorsList.dart';
 
 import '../../CustomWidgets/MyTextFormField.dart';
 
@@ -10,6 +16,9 @@ class VisitorList extends StatefulWidget {
 
 class _VisitorListState extends State<VisitorList> {
   // List status = ["ALL", "TODAY", "IN", "OUT"];
+  bool isLoading = false;
+  bool isempty = false;
+  List allVisitorList = [];
   TabController _tabController1;
   List<Widget> status1 = [
     Tab(
@@ -25,6 +34,10 @@ class _VisitorListState extends State<VisitorList> {
       text: 'OUT',
     ),
   ];
+
+  //List status1 = ["ALL","TODAY","IN","OUT"];
+
+
   List dialogList = [
     {
       "lable": "Physically Misbehavior",
@@ -36,6 +49,13 @@ class _VisitorListState extends State<VisitorList> {
       "lable": "Threten on me",
     },
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //GetAllVisitors();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +83,13 @@ class _VisitorListState extends State<VisitorList> {
                         borderRadius: BorderRadius.circular(8),
                         color: appPrimaryMaterialColor[800]),
                     indicatorWeight: 1,
-                    onTap: (index) {},
+                    onTap: (index) {
+                      //print(index);
+                      if(index == 0){
+                        print(index);
+                        //GetAllVisitors();
+                      }
+                    },
                     tabs: status1),
               ),
             ),
@@ -73,7 +99,7 @@ class _VisitorListState extends State<VisitorList> {
                 child: TabBarView(
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      ListView.builder(
+                      /*ListView.builder(
                           scrollDirection: Axis.vertical,
                           itemCount: 4,
                           itemBuilder: (BuildContext context, int index) {
@@ -113,7 +139,7 @@ class _VisitorListState extends State<VisitorList> {
                                         Padding(
                                           padding:
                                               const EdgeInsets.only(top: 10.0),
-                                          child: Text("Aksha Patel",
+                                          child: Text("Akshay",
                                               style: TextStyle(
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,
@@ -123,7 +149,7 @@ class _VisitorListState extends State<VisitorList> {
                                         Padding(
                                           padding:
                                               const EdgeInsets.only(top: 5.0),
-                                          child: Text("B-105",
+                                          child: Text("B 105",
                                               style: TextStyle(
                                                 color: Colors.grey,
                                                 fontFamily: 'WorkSans Bold',
@@ -206,139 +232,9 @@ class _VisitorListState extends State<VisitorList> {
                                 ),
                               ),
                             );
-                          }),
-                      ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: 4,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Card(
-                              elevation: 1,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Container(
-                                      width: 57.0,
-                                      height: 57.0,
-                                      child: Icon(
-                                        Icons.person,
-                                        color: Colors.white,
-                                        size: 49,
-                                      ),
-                                      decoration: new BoxDecoration(
-                                        color: Color(0x22888888),
-                                        borderRadius: new BorderRadius.all(
-                                            new Radius.circular(90.0)),
-                                        border: new Border.all(
-                                          color: Colors.grey,
-                                          width: 0.5,
-                                        ),
-                                      ),
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 10.0),
-                                          child: Text("Aksha Patel",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 15,
-                                                  fontFamily: 'WorkSans Bold')),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 5.0),
-                                          child: Text("B-105",
-                                              style: TextStyle(
-                                                color: Colors.grey,
-                                                fontFamily: 'WorkSans Bold',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 15,
-                                              )),
-                                        ),
-                                      ],
-                                    ),
-                                    true == false
-                                        ? Container(
-                                      width: 40.0,
-                                      height: 40.0,
-                                      child: Center(
-                                        child: Text(
-                                          "Allowed",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: 'WorkSans Bold',
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 10,
-                                          ),
-                                        ),
-                                      ),
-                                      decoration: new BoxDecoration(
-                                        color: Colors.green,
-                                        borderRadius: new BorderRadius
-                                            .all(
-                                            new Radius.circular(90.0)),
-                                      ),
-                                    )
-                                        : Container(
-                                      width: 40.0,
-                                      height: 40.0,
-                                      child: Center(
-                                        child: Text(
-                                          "Denied",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: 'WorkSans Bold',
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 10,
-                                          ),
-                                        ),
-                                      ),
-                                      decoration: new BoxDecoration(
-                                        color: Colors.red,
-                                        borderRadius: new BorderRadius
-                                            .all(
-                                            new Radius.circular(90.0)),
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) =>
-                                                ShowDialog());
-                                      },
-                                      child: Column(
-                                        children: [
-                                          Icon(
-                                            Icons.report,
-                                            size: 33,
-                                            color: Colors.black45,
-                                          ),
-                                          Text("Report",
-                                              style: TextStyle(
-                                                color: Colors.black54,
-                                                fontFamily: 'WorkSans Bold',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 12,
-                                              ))
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            );
-                          }),
+                          }),*/
+                      AllVisitorsList(),
+                      TodayVisitorsList(),
                       ListView.builder(
                           scrollDirection: Axis.vertical,
                           itemCount: 4,
@@ -611,37 +507,10 @@ class _VisitorListState extends State<VisitorList> {
       ),
     );
   }
-/*Container(
-  height: 40,
-  child: Padding(
-  padding: const EdgeInsets.only(top: 8.0),
-  child: ListView.builder(
-  scrollDirection: Axis.horizontal,
-  itemCount: status.length,
-  itemBuilder: (BuildContext context, int index) {
-  return Padding(
-  padding: const EdgeInsets.only(left: 5.0),
-  child: Container(
-  width: 60.0,
-  alignment: Alignment.center,
-  child: new Text(
-  "${status[index]}",
-  style: new TextStyle(
-  fontSize: 15.0,
-  fontWeight: FontWeight.w500,
-  color: appPrimaryMaterialColor,
-  ),
-  ),
-  decoration: BoxDecoration(
-  borderRadius: BorderRadius.circular(5),
-  border: Border.all(
-  width: 1, color: appPrimaryMaterialColor),
-  ),
-  ),
-  );
-  }),
-  ),
-  )*/
+
+
+
+
 }
 
 class ShowDialog extends StatefulWidget {
