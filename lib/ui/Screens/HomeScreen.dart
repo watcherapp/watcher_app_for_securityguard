@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:watcher_app_for_securityguard/Common/ClassList.dart';
 import 'package:watcher_app_for_securityguard/Common/appColors.dart';
 import 'package:watcher_app_for_securityguard/CommonWidgets/BottomNavigationBarWithFab.dart';
@@ -19,6 +20,16 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
+  var watchmen_name="";
+
+  GetWatchmanInfo() async{
+    final login_pref = await SharedPreferences.getInstance();
+    setState(() {
+      watchmen_name = login_pref.getString("firstName") + " " + login_pref.getString("lastName") ;
+    });
+    print(watchmen_name);
+  }
+
   List<Widget> _widgetOptions = <Widget>[
     VisitorList(),
     ParkingDetail(),
@@ -42,6 +53,12 @@ class _HomeScreenState extends State<HomeScreen>
   ];
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    GetWatchmanInfo();
+  }
+  @override
   Widget build(BuildContext context) {
     var provider = Provider.of<BottomNavigationBarProvider>(context);
     return Scaffold(
@@ -52,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen>
         elevation: 0.5,
         centerTitle: true,
         title: Text(
-          "Hey, Megha",
+          "Hey, "+ watchmen_name,
           style: TextStyle(color: Colors.black, fontSize: 17),
         ),
         actions: [
@@ -84,23 +101,3 @@ class _HomeScreenState extends State<HomeScreen>
     );
   }
 }
-/* SizedBox(
-            height: 40,
-          ),*/
-/* TabBar(
-              isScrollable: true,
-              controller: _tabController,
-              unselectedLabelColor: Colors.grey,
-              labelColor: appPrimaryMaterialColor,
-              indicatorColor: appPrimaryMaterialColor,
-              indicatorWeight: 2,
-              onTap: (index) {},
-              tabs: tabs),
-          Expanded(
-            child: TabBarView(physics: BouncingScrollPhysics(), children: [
-              Verification(),
-              VisitorList(),
-              ParkingDetail(),
-              Emergency(),
-            ]),
-          ),*/

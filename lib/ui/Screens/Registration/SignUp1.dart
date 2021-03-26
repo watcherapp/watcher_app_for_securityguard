@@ -16,6 +16,10 @@ class SignUp1 extends StatefulWidget {
 }
 
 class _SignUp1State extends State<SignUp1> {
+  final TextEditingController txtMobileNumberController =
+      TextEditingController();
+  var country_code = "+91";
+  var mobile;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,17 +87,16 @@ class _SignUp1State extends State<SignUp1> {
                         Expanded(
                           child: MyTextFormField(
                               lable: "Mobile No",
-                              validator: (val) {
-                                if (val.isEmpty) {
-                                  return "Please Enter Mobile or email";
-                                }
-                                return "";
-                              },
+                              controller: txtMobileNumberController,
+                              maxLength: 10,
                               icon: CountryCodePicker(
-                                // onChanged: _onCountryChange,
-                                initialSelection: 'IT',
+                                onChanged: (code) {
+                                  country_code = code.toString();
+                                },
+                                initialSelection: 'IN',
                                 favorite: ['+91', 'IN'],
-                                showCountryOnly: false, showFlag: true,
+                                showCountryOnly: false,
+                                showFlag: true,
                                 showOnlyCountryWhenClosed: false,
                                 alignLeft: false,
                               ),
@@ -107,10 +110,15 @@ class _SignUp1State extends State<SignUp1> {
                     MyButton(
                         title: "Send OTP",
                         onPressed: () {
+                          print(country_code + txtMobileNumberController.text);
+                          mobile =
+                              country_code + txtMobileNumberController.text;
                           Navigator.push(
                               context,
                               PageTransition(
-                                  child: OTPScreen(),
+                                  child: OTPScreen(
+                                    otpData: mobile,
+                                  ),
                                   type: PageTransitionType.rightToLeft));
                         }),
                     SizedBox(

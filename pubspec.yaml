@@ -38,6 +38,16 @@ dependencies:
   url_launcher: ^5.7.10
   provider: ^4.3.3
   country_code_picker: ^1.7.0
+  dio: ^3.0.10
+  shared_preferences: ^2.0.4
+  device_info: ^2.0.0
+  fluttertoast: ^3.0.3
+  image_picker: any
+  flutter_native_image: ^0.0.5+3
+  firebase_core: any
+  firebase_auth: any
+  firebase_messaging: any
+  http:
 
 
 
