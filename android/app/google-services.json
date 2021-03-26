@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "174148437266",
+    "project_id": "watcherwatchmanapp",
+    "storage_bucket": "watcherwatchmanapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174148437266:android:806f57d658243350ab5fcb",
+        "android_client_info": {
+          "package_name": "com.watcher_app_for_securityguard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "174148437266-ihmfitclbotgpntpgl8dvoorunuf8k7m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.watcher_app_for_securityguard",
+            "certificate_hash": "540ec2dd382be59672af44f51d455555d9634cdd"
+          }
+        },
+        {
+          "client_id": "174148437266-9bem59014ba9rgta1dbv188dq6opghaa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB58TiGoU3Xak78E1y7fGl1BBt4I8AsuiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "174148437266-9bem59014ba9rgta1dbv188dq6opghaa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
