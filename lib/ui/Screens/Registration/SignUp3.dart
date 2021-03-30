@@ -194,7 +194,7 @@ class _SignUp3State extends State<SignUp3> {
           userFileName = _userProfile.path.split('/').last;
           userFilePath = userCompressedFile.path;
 
-          identityFileName = _userProfile.path.split('/').last;
+          identityFileName = _identityProof.path.split('/').last;
           identityFilePath = identityCompressedFile.path;
         } else if (_userFilePath != null && _identityFilePath != "") {
           userFilePath = _userFilePath;
@@ -214,14 +214,14 @@ class _SignUp3State extends State<SignUp3> {
           "societyCode": "SOC-RAGHUVIR-525411000000", //txtSocietyCodeController.text,
           "identityProof": IdproofType,
           "deviceType": deviceType,
-          /*"identityImage": (identityFilePath != null && identityFilePath != '')
+          "identityImage": (identityFilePath != null && identityFilePath != '')
               ? await MultipartFile.fromFile(identityFilePath,
               filename: identityFileName.toString())
               : null,
           "watchmanImage": (userFilePath != null && userFilePath != '')
               ? await MultipartFile.fromFile(userFilePath,
               filename: userFileName.toString())
-              : null,*/
+              : null,
         });
         log(body.fields.toString());
         Services.apiHandler(apiName: api, body: body).then((data) async {

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
@@ -28,9 +29,15 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
   TextEditingController txtLastNameController = TextEditingController();
   TextEditingController txtMobileController = TextEditingController();
   TextEditingController txtEmailController = TextEditingController();
+  TextEditingController txtNumberOfGuestController = TextEditingController();
+  TextEditingController txtVehicleNumberController = TextEditingController();
   var wing_flat = "";
   var relation = "";
   var _reason = "";
+
+  FocusNode myFlatNode;
+  FocusNode myGuestNode;
+
 
   String reasonData, relativeData;
 
@@ -59,6 +66,101 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
   String _visitorFileName, _frontFileName, _backFileName;
   String _visitorFilePath, _frontFilePath, _backFilepath;
 
+
+  addVisitors() async {
+    try {
+      final login_pref = await SharedPreferences.getInstance();
+      var api = "api/staff/addVisitorEntry";
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+
+        String visitorsFileName;
+        String visitorsFilePath;
+        File visitorsCompFile;
+
+        if(_visitorProfile != null){
+          ImageProperties userprofileProperties =
+          await FlutterNativeImage.getImageProperties(_visitorProfile.path);
+          visitorsCompFile = await FlutterNativeImage.compressImage(
+              _visitorProfile.path,
+              quality: 90);
+          visitorsFileName = _visitorProfile.path.split("/").last;
+          visitorsFilePath = visitorsCompFile.path;
+        }
+
+        var now = new DateTime.now();
+        var ValidFromTo = now.day.toString() +"/"+ now.month.toString() +"/"+ now.year.toString();
+
+
+
+        FormData body_data = FormData.fromMap({
+          "entryNo" : "GUEST",
+          "watchmanId" : login_pref.getString("id"),//"605589d6addeef0408c12997",
+          "vehicleNo" : txtVehicleNumberController.text,
+          "guestType" : guest_Type,
+          "guestName" : txtFirstNameController.text +" "+ txtLastNameController.text,
+          "numberOfGuest" : txtNumberOfGuestController.text,
+          "emailId" : txtEmailController.text,
+          "mobileNo" : txtMobileController.text,
+          "wingId" : wing_Type,
+          "flateId" : flats_Type,
+          "validFrom" : ValidFromTo,
+          "validTo" : ValidFromTo,
+          "purposeId" : "603cb582c2850c19e08cebd7",
+          "guestImage": (visitorsFilePath != null && visitorsFilePath != '')
+                        ? await MultipartFile.fromFile(visitorsFilePath,
+                        filename: visitorsFileName.toString())
+                          : null,
+          "guestVideo": "",
+
+        });
+
+        Services.apiHandler(apiName: api, body: body_data).then((data) {
+          if (data.Data.length > 0) {
+            print("==================guest added=================");
+            print(data.Data);
+            Fluttertoast.showToast(
+                msg: "Visitors entry added successfully.",
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                toastLength: Toast.LENGTH_LONG);
+          } else {
+            Fluttertoast.showToast(
+                msg: "Visitors not added successfully.",
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                toastLength: Toast.LENGTH_LONG);
+            setState(() {
+              isempty = true;
+            });
+          }
+        }, onError: (e) {
+          setState(() {
+            isLoading = false;
+          });
+          print("error on call -> ${e.message}");
+          Fluttertoast.showToast(
+              msg: "No internet connection.",
+              gravity: ToastGravity.BOTTOM,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              toastLength: Toast.LENGTH_LONG);
+        });
+      }
+    } on SocketException catch (_) {
+      Fluttertoast.showToast(
+          msg: "No internet connection.",
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          toastLength: Toast.LENGTH_LONG);
+      setState(() {
+        isempty = true;
+      });
+    }
+  }
   _visitorImgFromCamera() async {
     // ignore: deprecated_member_use
     File image_profile = await ImagePicker.pickImage(
@@ -215,6 +317,16 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
     PostForGetAllWing();
     PostForVisitReason();
     PostForGetAllGuestCategory();
+    myFlatNode = FocusNode();
+    myGuestNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the focus node when the Form is disposed.
+    myFlatNode.dispose();
+    myGuestNode.dispose();
+    super.dispose();
   }
 
   PostForGetAllGuestCategory() async {
@@ -640,6 +752,102 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                     return null;
                   },
                   hintText: "Enter email",),
+
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                      child: Text("Vehicle Number", style: fontConstants.formFieldLabel),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 2.0),
+                      child: TextFormField(
+                        controller: txtVehicleNumberController,
+                        style: TextStyle(fontSize: 13),
+                        maxLength: 10,
+                        decoration: InputDecoration(
+                          fillColor: Colors.grey[200],
+                          filled: true,
+                          hintText: "Vehicle Number",
+                          hintStyle: TextStyle(fontSize: 13, color: Colors.grey),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          contentPadding:
+                          EdgeInsets.only(left: 15, right: 8, top: 4, bottom: 4),
+                          counterText: "",
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.solid,
+                              color: Colors.red,
+                            ),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                        ),
+                        onChanged: (String val){
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                      child: Text("Number Of Person", style: fontConstants.formFieldLabel),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 2.0),
+                      child: TextFormField(
+                        controller: txtNumberOfGuestController,
+                        style: TextStyle(fontSize: 13),
+                        maxLength: 10,
+                        decoration: InputDecoration(
+                          fillColor: Colors.grey[200],
+                          filled: true,
+                          hintText: "Number Of Person",
+                          hintStyle: TextStyle(fontSize: 13, color: Colors.grey),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          contentPadding:
+                          EdgeInsets.only(left: 15, right: 8, top: 4, bottom: 4),
+                          counterText: "",
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.solid,
+                              color: Colors.red,
+                            ),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                        ),
+                        onChanged: (String val){
+
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               /*Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: DialogOpenFormField(
@@ -731,6 +939,7 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                         child: ButtonTheme(
                           alignedDropdown: true,
                           child: DropdownButton<String>(
+                            focusNode: myFlatNode,
                             isExpanded: true,
                             value: flats_Type,
                             iconSize: 30,
@@ -780,6 +989,7 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
                         child: ButtonTheme(
                           alignedDropdown: true,
                           child: DropdownButton<String>(
+                            focusNode: myGuestNode,
                             isExpanded: true,
                             value: guest_Type,
                             iconSize: 30,
@@ -1152,60 +1362,6 @@ class _AddVisitorScreenState extends State<AddVisitorScreen> {
       ),
     );
   }
-
-  /*addVisitors() async {
-    try {
-      var api = "api/society/getFlatsOfSocietyWing";
-      final result = await InternetAddress.lookup('google.com');
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-
-
-        FormData body_data = FormData.fromMap({
-
-        });
-
-        Services.apiHandler(apiName: api, body: body_data).then((data) {
-          if (data.Data.length > 0) {
-            setState(() {
-              flatsList = data.Data;
-            });
-            print(flatsList);
-          } else {
-            Fluttertoast.showToast(
-                msg: "Visitors not added successfully.",
-                gravity: ToastGravity.BOTTOM,
-                backgroundColor: Colors.red,
-                textColor: Colors.white,
-                toastLength: Toast.LENGTH_LONG);
-            setState(() {
-              isempty = true;
-            });
-          }
-        }, onError: (e) {
-          setState(() {
-            isLoading = false;
-          });
-          print("error on call -> ${e.message}");
-          Fluttertoast.showToast(
-              msg: "No internet connection.",
-              gravity: ToastGravity.BOTTOM,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-              toastLength: Toast.LENGTH_LONG);
-        });
-      }
-    } on SocketException catch (_) {
-      Fluttertoast.showToast(
-          msg: "No internet connection.",
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          toastLength: Toast.LENGTH_LONG);
-      setState(() {
-        isempty = true;
-      });
-    }
-  }*/
 
 }
 
