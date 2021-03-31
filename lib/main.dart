@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:watcher_app_for_securityguard/Common/appColors.dart';
 import 'package:watcher_app_for_securityguard/ui/Screens/Splash.dart';
+import 'package:watcher_app_for_securityguard/ui/Screens/parking.dart';
 
 import 'Providers/BottomNavigationBarProvider.dart';
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             primaryColor: appPrimaryMaterialColor, fontFamily: 'WorkSans'),
-        home: Splash(),
+        home: Parking(),
       ),
     );
   }
